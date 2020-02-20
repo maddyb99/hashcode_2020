@@ -10,3 +10,6 @@ def fire_and_forget(f):
         return asyncio.get_event_loop().run_in_executor(None, f, *args, *kwargs)
     return wrapped
 
+
+@fire_and_forget
+def choose_lib(libraries, books):
