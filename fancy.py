@@ -54,7 +54,7 @@ def parser(input_file='a_example.txt'):
     n = fp.read().splitlines()
     while "" in n:
         n.remove("")
-    print(n)
+    # print(n)
     data = list(map(lambda x: get_int_list(x), n))
     pro_info = data[0]
     book_count = pro_info[0]
