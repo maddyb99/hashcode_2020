@@ -120,7 +120,7 @@ def process_libraries(libraries, gantt, total):
 
 
 def main():
-    libraries, books, total_days = parser('d_tough_choices.txt')
+    libraries, books, total_days = parser('c_incunabula.txt')
     libraries.sort(key=comp, reverse=True)
     libscores = [x.score for x in libraries]
     gantt = []
