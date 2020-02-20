@@ -51,7 +51,11 @@ def get_book_list(data_list, book_db):
 
 def parser(input_file='a_example.txt'):
     fp = open(input_file)
-    data = list(map(lambda x: get_int_list(x), fp.read().splitlines()))
+    n = fp.read().splitlines()
+    while "" in n:
+        n.remove("")
+    print(n)
+    data = list(map(lambda x: get_int_list(x), n))
     pro_info = data[0]
     book_count = pro_info[0]
     library_count = pro_info[1]
@@ -109,12 +113,12 @@ def process_libraries(libraries, gantt, total):
         print(lib.id, len(books))
         for i in range(len(books)):
             print(books[i].id, end=' ')
-        if lib != gantt[len(gantt)-1]:
+        if lib != gantt[len(gantt) - 1]:
             print()
 
 
 def main():
-    libraries, books, total_days = parser('a_example.txt')
+    libraries, books, total_days = parser('b_read_on.txt')
     libraries.sort(key=comp, reverse=True)
     libscores = [x.score for x in libraries]
     gantt = []
