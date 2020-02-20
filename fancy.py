@@ -23,7 +23,7 @@ class Library:
         tval = 0
         for book in self.books:
             tval += book.score
-        self.score = self.perday / tval
+        self.score = (self.perday * 1000) / (tval * self.signup)
 
     def retbooks(self):
         return len(self.books)
