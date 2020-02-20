@@ -110,6 +110,8 @@ def process_libraries(libraries, gantt, total):
     for lib in gantt:
         cur += lib.signup
         value, books = proc_lib(lib, cur, total, uniq_books)
+        if len(books) == 0:
+            continue
         print(lib.id, len(books))
         for i in range(len(books)):
             print(books[i].id, end=' ')
