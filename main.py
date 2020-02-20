@@ -6,6 +6,12 @@ class Book:
         self.id = id
         self.score = score
 
+    def __str__(self):
+        return "(id: {}, score: {})".format(self.id, self.score)
+
+    def __repr__(self):
+        return str(self)
+
 
 class Library:
     def totscore(self):
@@ -21,6 +27,15 @@ class Library:
         self.totscore()
     def retbooks(self):
         return len(self.books)
+
+    def get_smol_books(self):
+        return self.books if DEBUG else ','.join([str(item) for item in self.books[0:2]]) + '...'
+
+    def __str__(self):
+        return "LIB > signup = {}, perday = {}, books = {} <".format(self.signup, self.perday, self.get_smol_books())
+
+    def __repr__(self):
+        return str(self)
 
 
 def get_int_list(data):
@@ -53,11 +68,8 @@ def parser(input_file='a_example.txt'):
         _lib_info = data[lindex]
         _lib_books = data[lindex + 1]
         bl = get_book_list(_lib_books, books)
-        if DEBUG:
-            print()
-            for b in bl:
-                print(b.id, b.score)
         libraries.append(Library(bl, _lib_info[1], _lib_info[2]))
+    print(libraries)
     return libraries, books
 def comparator(a):
     return a.ratio
