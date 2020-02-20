@@ -1,3 +1,5 @@
+import sys
+
 DEBUG = False
 
 
@@ -24,6 +26,7 @@ class Library:
         for book in self.books:
             tval += book.score
         self.score = (self.perday * 1000) / (tval * self.signup)
+        # self.score = tval / (self.signup + (len(self.books) / self.perday))
 
     def retbooks(self):
         return len(self.books)
@@ -49,7 +52,7 @@ def get_book_list(data_list, book_db):
     return ret
 
 
-def parser(input_file='a_example.txt'):
+def parser(input_file='c_incunabula.txt'):
     fp = open(input_file)
     n = fp.read().splitlines()
     while "" in n:
@@ -120,7 +123,7 @@ def process_libraries(libraries, gantt, total):
 
 
 def main():
-    libraries, books, total_days = parser('b_read_on.txt')
+    libraries, books, total_days = parser(sys.argv[1])
     libraries.sort(key=comp, reverse=True)
     libscores = [x.score for x in libraries]
     gantt = []
