@@ -120,7 +120,7 @@ def process_libraries(libraries, gantt, total):
 
 
 def main():
-    libraries, books, total_days = parser('e_so_many_books.txt')
+    libraries, books, total_days = parser('f_libraries_of_the_world.txt')
     libraries.sort(key=comp, reverse=True)
     libscores = [x.score for x in libraries]
     gantt = []
