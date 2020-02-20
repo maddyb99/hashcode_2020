@@ -16,15 +16,16 @@ class Book:
 class Library:
     def totscore(self):
         for b in self.books:
-            self.totalscore=self.totalscore+b.score
+            self.totalscore = self.totalscore + b.score
 
-    def __init__(self, books, signup, perday,ratio=0,score=0):
+    def __init__(self, books, signup, perday, ratio=0, score=0):
         self.books = books
         self.signup = signup
         self.perday = perday
-        self.ratio=ratio
-        self.totalscore=score
+        self.ratio = ratio
+        self.totalscore = score
         self.totscore()
+
     def retbooks(self):
         return len(self.books)
 
@@ -71,21 +72,26 @@ def parser(input_file='a_example.txt'):
         libraries.append(Library(bl, _lib_info[1], _lib_info[2]))
     print(libraries)
     return libraries, books
+
+
 def comparator(a):
     return a.ratio
     # return a.score>b.score
 
+
 def rank(libraries):
     for lib in libraries:
-        lib.ratio=(lib.signup+(lib.retbooks()/lib.perday))/lib.totalscore
+        lib.ratio = (lib.signup + (lib.retbooks() / lib.perday)) / lib.totalscore
     libraries.sort(key=comparator)
     return libraries
 
+
 def main():
     libraries, books = parser('a_example.txt')
-    libraries=rank(libraries)
+    libraries = rank(libraries)
     for lib in libraries:
         print(lib.ratio)
+
 
 if __name__ == '__main__':
     main()
